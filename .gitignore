@@ -1,0 +1,8 @@
+# Dependencies directory
+node_modules/
+
+# Environment variables
+.env*
+
+# Next.js build directory
+.next/
