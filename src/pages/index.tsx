@@ -1,6 +1,8 @@
+import { Logo } from 'common/components/Logo';
+
 const HomePage = () => {
   return (
-    <div>Job boards app</div>
+    <Logo />
   );
 };
 

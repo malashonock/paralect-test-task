@@ -1,0 +1,54 @@
+@import "./_colors.scss";
+
+/* Extendable utility classes */
+
+%font-base {
+  font-family: var(--font-family-inter); // defined in styles/fonts.ts
+  font-style: normal;
+  color: $black;
+}
+
+.title-l-bold {
+  @extend %font-base;
+  font-weight: bold; // 700
+  font-size: 1.75rem; // 28px
+  line-height: 2.125rem; // 34px
+}
+
+.title-s-bold {
+  @extend %font-base;
+  font-weight: bold; // 700
+  font-size: 1.25rem; // 20px
+  line-height: 100%; // 20px
+}
+
+.title-s-semibold {
+  @extend %font-base;
+  font-weight: 600;
+  font-size: 1.25rem; // 20px
+  line-height: 120%; // 24px
+}
+
+.subtitle-s-regular {
+  @extend %font-base;
+  font-weight: normal; // 400
+  font-size: 0.875rem; // 14px
+  line-height: 1.25rem; // 20px
+}
+
+.text-base-m-regular {
+  @extend %font-base;
+  font-weight: normal; // 400
+  font-size: 1rem; // 16px
+  line-height: 140%; // ~22px
+}
+
+.text-base-m-bold {
+  @extend %font-base;
+  font-weight: normal; // 400
+  font-size: 1rem; // 16px
+  line-height: 118.75%; // 19px
+}
+
+
+

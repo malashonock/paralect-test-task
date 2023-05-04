@@ -1,3 +1,8 @@
+import cn from 'classnames';
+
+import '../src/styles/index.scss';
+import { inter, poppins } from '../src/styles/fonts';
+
 /** @type { import('@storybook/react').Preview } */
 const preview = {
   parameters: {
@@ -9,6 +14,13 @@ const preview = {
       },
     },
   },
+  decorators: [
+    (Story) => (
+      <div className={cn(inter.variable, poppins.variable)}>
+        <Story />
+      </div>
+    ),
+  ]
 };
 
 export default preview;

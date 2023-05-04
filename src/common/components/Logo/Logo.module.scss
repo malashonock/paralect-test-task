@@ -1,0 +1,70 @@
+@use "sass:math";
+
+@import '~styles/_colors.scss';
+@import '~styles/_typography.scss';
+
+$logo-box-side: 1.875rem; // let B
+$ellipse-ratio: 39.36 / 15.47; // let k = H / W
+
+/*
+  Given ellipse's half-axes (h = H / 2, w = W /2), the radius of containing circumference r = sqrt(h^2 + w^2)
+  The side of the square (B) within the circumference is described by equation 2 * B^2 = (2 * r)^2
+  B^2 = (2 * r)^2 / 2
+  B = 2 * r / sqrt(2)
+  B = 2 * sqrt(h^2 + w^2) / sqrt(2)
+  B = 2 * sqrt(h^2 + (k * h)^2) / sqrt(2)
+  B = 2 * sqrt(h^2 * (k^2 + 1)) / sqrt(2)
+  B^2 = 4 * (h^2 * (k^2 + 1)) / 2
+  B^2 = 2 * h^2 * (k^2 + 1)
+  h^2 = B^2 / (2 * (k^2 + 1))
+  h = B / sqrt(2 * (k^2 + 1))
+  H = 2 * h
+  W = k * H
+ */
+
+$ellipse-height: 2 * $logo-box-side / math.sqrt(2 * (math.pow($ellipse-ratio, 2) + 1)); // let H
+$ellipse-width: $ellipse-ratio * $ellipse-height; // let W
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  column-gap: 0.75rem;
+}
+
+.image {
+  position: relative;
+
+  margin: 0;
+  width: $logo-box-side;
+  height: $logo-box-side;
+}
+
+.ellipse {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform-origin: center;
+
+  height: $ellipse-height;
+  width: $ellipse-width;
+  border-radius: 50%;
+
+  background-color: $blue-main-500;
+}
+
+.ellipse1 {
+  transform: translate(-50%, -50%) rotate(+45deg);
+}
+
+.ellipse2 {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.text {
+  font-family: var(--font-family-poppins); // defined in styles/fonts.ts
+  font-weight: 600;
+  font-size: 1.5rem; // 24px
+  line-height: 2.25rem; // 36px
+  letter-spacing: -0.02rem;
+  color: $black;
+}
