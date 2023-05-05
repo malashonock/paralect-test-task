@@ -1,6 +1,4 @@
+@import './_globals.scss';
 @import './_colors.scss';
 @import './_typography.scss';
-
-:root {
-  font-size: 16px; // 1rem
-}
+@import './_mixins.scss';
