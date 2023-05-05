@@ -1,0 +1,21 @@
+.wrapper {
+  position: relative;
+  height: 5.25rem; // 84px
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+}
+
+.links {
+  display: flex;
+  flex-direction: row;
+  column-gap: 3.75rem; // 60px
+}
