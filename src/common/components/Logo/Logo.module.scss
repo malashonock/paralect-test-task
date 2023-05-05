@@ -1,7 +1,7 @@
 @use "sass:math";
 
-@import '~styles/_colors.scss';
-@import '~styles/_typography.scss';
+@import 'styles/_colors.scss';
+@import 'styles/_typography.scss';
 
 $logo-box-side: 1.875rem; // let B
 $ellipse-ratio: 39.36 / 15.47; // let k = H / W

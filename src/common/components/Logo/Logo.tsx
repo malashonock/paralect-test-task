@@ -1,4 +1,4 @@
-import { FunctionComponent } from 'react';
+import React, { FunctionComponent } from 'react';
 import cn from 'classnames';
 
 import styles from './Logo.module.scss';
