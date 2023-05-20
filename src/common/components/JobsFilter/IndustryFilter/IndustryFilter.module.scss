@@ -1,0 +1,14 @@
+@import 'styles/_typography.scss';
+
+.label {
+  @extend .text-base-m-bold;
+  margin-bottom: 0.5rem; // 8px
+}
+
+.input {
+  height: 2.625rem; // 42px
+  padding: 0.6875rem 0.75rem; // 11px 12px
+  border-radius: 0.5rem; // 8px
+
+  @extend .subtitle-s-regular;
+}
