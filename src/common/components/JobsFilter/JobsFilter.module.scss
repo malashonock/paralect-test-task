@@ -1,5 +1,6 @@
 @import 'styles/_colors.scss';
 @import 'styles/_typography.scss';
+@import 'styles/_components.scss';
 
 .wrapper {
   width: 19.6875rem; // 315px
@@ -31,10 +32,6 @@
 }
 
 .applyBtn {
+  @extend %button;
   height: 2.5rem; // 40px
-  border-radius: 0.5rem; // 8px
-  @extend .subtitle-s-regular;
-  font-weight: 500;
-  background-color: $blue-main-500;
-  color: $white;
 }

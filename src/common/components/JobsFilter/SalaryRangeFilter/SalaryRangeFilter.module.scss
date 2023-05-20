@@ -1,5 +1,6 @@
 @import 'styles/_colors.scss';
 @import 'styles/_typography.scss';
+@import 'styles/_components.scss';
 
 $shevron-size: 0.75rem; // 12px
 $shevron-padding: 0.0625rem; // 1px
@@ -15,11 +16,9 @@ $shevron-padding: 0.0625rem; // 1px
 }
 
 .input {
+  @extend %input;
   height: 2.625rem; // 42px
   padding: 0.6875rem 0.75rem; // 11px 12px
-  border-radius: 0.5rem; // 8px
-
-  @extend .subtitle-s-regular;
 }
 
 .controls {
