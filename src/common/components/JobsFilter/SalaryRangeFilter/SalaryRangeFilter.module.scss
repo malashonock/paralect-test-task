@@ -1,0 +1,51 @@
+@import 'styles/_colors.scss';
+@import 'styles/_typography.scss';
+
+$shevron-size: 0.75rem; // 12px
+$shevron-padding: 0.0625rem; // 1px
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.5rem; // 8px
+}
+
+.label {
+  @extend .text-base-m-bold;
+}
+
+.input {
+  height: 2.625rem; // 42px
+  padding: 0.6875rem 0.75rem; // 11px 12px
+  border-radius: 0.5rem; // 8px
+
+  @extend .subtitle-s-regular;
+}
+
+.controls {
+  width: 2.25rem; // 36px
+  align-items: center;
+}
+
+.control {
+  border-left: none;
+  flex-direction: column;
+  color: $grey-500;
+  
+  svg {
+    width: $shevron-size;
+    height: $shevron-size;
+  }
+}
+
+.controlUp {
+  justify-content: flex-end;
+  padding-bottom: $shevron-padding;
+  border-bottom: none;
+}
+
+.controlDown {
+  justify-content: flex-start;
+  padding-top: $shevron-padding;
+  border-top: none;
+}
