@@ -2,7 +2,7 @@ import { FunctionComponent } from 'react';
 import type { AppProps } from 'next/app';
 import cn from 'classnames';
 
-import { Layout } from 'common/components';
+import { Layout } from 'components/common';
 
 import 'styles/index.scss';
 import { inter, poppins } from 'styles/fonts';

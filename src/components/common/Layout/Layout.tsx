@@ -1,7 +1,7 @@
 import React, { FunctionComponent, PropsWithChildren } from 'react';
 import cn from 'classnames';
 
-import { Navbar } from 'common/components';
+import { Navbar } from './Navbar';
 
 import styles from './Layout.module.scss';
 

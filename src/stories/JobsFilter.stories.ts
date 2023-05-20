@@ -1,4 +1,4 @@
-import { JobsFilter } from 'common/components';
+import { JobsFilter } from 'components/search';
 
 export default {
   title: 'Components/JobsFilter',

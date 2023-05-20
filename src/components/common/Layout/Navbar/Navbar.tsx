@@ -1,6 +1,7 @@
 import React, { FunctionComponent } from 'react';
 
-import { Logo, NavLink } from 'common/components';
+import { Logo } from '../Logo';
+import { NavLink } from '../NavLink';
 
 import styles from './Navbar.module.scss';
 

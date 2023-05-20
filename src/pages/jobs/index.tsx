@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
 
-import { JobsFilter, SearchBar } from 'common/components';
+import { JobsFilter, SearchBar } from 'components/search';
 
 import styles from './JobsPage.module.scss';
 

@@ -1,4 +1,4 @@
-import { Logo } from 'common/components/Logo';
+import { Logo } from 'components/common/Layout/Logo';
 
 export default {
   title: 'Components/Logo',
