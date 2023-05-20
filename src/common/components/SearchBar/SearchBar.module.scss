@@ -1,0 +1,25 @@
+@import 'styles/_typography.scss';
+@import 'styles/_colors.scss';
+@import 'styles/_components.scss';
+
+.wrapper {
+  width: 100%;
+  position: relative;
+}
+
+.input {
+  @extend %input;
+  border-color: $grey-200;
+  width: 100%;
+  height: 3rem; // 48px
+  padding: 0.84375rem 0.75rem; // 13.5px 12px
+}
+
+.submitBtn {
+  @extend %button;
+  padding: 0.34375rem 1.25rem; // 5.5px 20px
+
+  position: absolute;
+  top: 0.5rem; // 8px
+  right: 0.75rem; // 12px
+}
