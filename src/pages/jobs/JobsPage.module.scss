@@ -1,0 +1,19 @@
+.wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  column-gap: 1.75rem; // 28px
+}
+
+.main {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem; // 16px;
+}
+
+.jobs {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem; // 16px;
+}
