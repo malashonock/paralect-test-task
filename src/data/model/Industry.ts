@@ -1,4 +1,4 @@
-import { Position, PositionPreview } from '.';
+import { Position } from '.';
 
 export interface Industry {
   key: number;
@@ -8,10 +8,3 @@ export interface Industry {
   title_trimmed: string;
   positions: Position[];
 }
-
-export type IndustryPreview =
-  & { 
-    id: Industry['key']; 
-    positions: PositionPreview[];
-  }
-  & Pick<Industry, 'key' | 'title'>;
