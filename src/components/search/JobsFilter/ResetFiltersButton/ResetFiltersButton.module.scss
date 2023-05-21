@@ -11,6 +11,23 @@ $close-icon-line-height: 2.5px;
   flex-direction: row;
   column-gap: 0.25rem; // 4px
   align-items: center;
+
+  &:disabled {
+    cursor: not-allowed;
+    
+    .text {
+      color: $grey-300;
+    }
+
+    .line {
+      border-color: $grey-300;
+    }
+  }
+
+  &:not(:disabled):hover,
+  &:active {
+    opacity: 0.8;
+  }
 }
 
 .text {

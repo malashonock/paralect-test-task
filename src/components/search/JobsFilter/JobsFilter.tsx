@@ -63,7 +63,7 @@ export const JobsFilter: FunctionComponent<JobsFilterProps> = ({ state, dispatch
     <div className={styles.wrapper}>
       <div className={styles.header}>
         <h2 className={styles.title}>Фильтры</h2>
-        <ResetFiltersButton onClick={handleResetFilters} />
+        <ResetFiltersButton onClick={handleResetFilters} disabled={!isDirty} />
       </div>
       <div className={styles.body}>
         <IndustryFilter value={industryId} onChange={handleIndustryChange} />
