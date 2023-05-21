@@ -1,17 +1,26 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useReducer } from 'react';
 
 import { JobsFilter, SearchBar } from 'components/search';
+import { searchReducer, initialSearchState } from 'reducers/search';
 
 import styles from './JobsPage.module.scss';
 
 const JobsPage: FunctionComponent = () => {
+  const [searchState, dispatch] = useReducer(searchReducer, initialSearchState);
+
   return (
     <div className={styles.wrapper}>
-      <JobsFilter />
+      <JobsFilter
+        state={{
+          industryId: searchState.industryId,
+          salaryRange: searchState.salaryRange,
+        }}
+        dispatch={dispatch}
+      />
       <div className={styles.main}>
-        <SearchBar />
+        <SearchBar dispatch={dispatch} />
         <div className={styles.jobs}>
-          Jobs found
+          {JSON.stringify(searchState)}
         </div>
       </div>
     </div>

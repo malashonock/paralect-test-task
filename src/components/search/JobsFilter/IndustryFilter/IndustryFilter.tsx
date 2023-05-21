@@ -1,12 +1,18 @@
-import { FunctionComponent, useMemo } from 'react';
+import { FunctionComponent, memo, useMemo } from 'react';
 import { Select, SelectItem } from '@mantine/core';
 
-import styles from './IndustryFilter.module.scss';
-import { ShevronIcon } from '../ShevronIcon';
 import { useIndustries } from 'data/hooks';
 import { Industry } from 'data/model';
 
-export const IndustryFilter: FunctionComponent = () => {
+import styles from './IndustryFilter.module.scss';
+import { ShevronIcon } from '../ShevronIcon';
+
+interface IndustryFilterProps {
+  value: string;
+  onChange: (industryId: string) => void;
+}
+
+export const IndustryFilter: FunctionComponent<IndustryFilterProps> = memo(({ value, onChange }) => {
   const { industries } = useIndustries();
 
   const options: SelectItem[] = useMemo(() => {
@@ -14,12 +20,14 @@ export const IndustryFilter: FunctionComponent = () => {
       value: industry.key.toString(),
       label: industry.title,
     })) || [
-      { value: '', label: '(Нет данных)', disabled: true },
+      { value: undefined, label: '(Нет данных)', disabled: true },
     ];
   }, [industries]);
 
   return (
     <Select
+      value={value ?? ''}
+      onChange={onChange}
       label="Отрасль"
       placeholder="Выберите отрасль"
       data={options}
@@ -35,4 +43,6 @@ export const IndustryFilter: FunctionComponent = () => {
       }}
     />
   );
-};
+});
+
+IndustryFilter.displayName = 'IndustryFilter';

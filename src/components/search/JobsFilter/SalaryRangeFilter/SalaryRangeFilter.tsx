@@ -1,14 +1,38 @@
-import { FunctionComponent } from 'react';
+import { FunctionComponent, memo } from 'react';
 import { NumberInput } from '@mantine/core';
+
+import { SalaryRange } from 'reducers/search';
 
 import styles from './SalaryRangeFilter.module.scss';
 
-export const SalaryRangeFilter: FunctionComponent = () => {
+interface SalaryRangeFilterProps {
+  value: SalaryRange;
+  onChange: (salaryRange: SalaryRange) => void;
+}
+
+export const SalaryRangeFilter: FunctionComponent<SalaryRangeFilterProps> = memo(({ value, onChange }) => {
+  const handleChangeFrom = (from: number | ''): void => {
+    onChange({
+      ...value,
+      from: String(from),
+    });
+  };
+
+  const handleChangeTo = (to: number | ''): void => {
+    onChange({
+      ...value,
+      to: String(to),
+    });
+  };
+
   return (
     <div className={styles.wrapper}>
       <label className={styles.label}>Оклад</label>
       <NumberInput
+        value={Number(value.from) || undefined}
+        onChange={handleChangeFrom}
         min={0}
+        max={Number(value.to) || Number.MAX_SAFE_INTEGER}
         placeholder="От"
         classNames={{
           input: styles.input,
@@ -19,7 +43,9 @@ export const SalaryRangeFilter: FunctionComponent = () => {
         }}
       />
       <NumberInput
-        min={0} // TODO: from value
+        value={Number(value.to) || undefined}
+        onChange={handleChangeTo}
+        min={Number(value.from) || 0}
         placeholder="До"
         classNames={{
           input: styles.input,
@@ -31,4 +57,6 @@ export const SalaryRangeFilter: FunctionComponent = () => {
       />
     </div>
   );
-};
+});
+
+SalaryRangeFilter.displayName = 'SalaryRangeFilter';
