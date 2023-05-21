@@ -1,7 +1,7 @@
 import { FunctionComponent, memo } from 'react';
-import { NumberInput } from '@mantine/core';
 
 import { SalaryRange } from 'reducers/search';
+import { NumberInput } from 'components/common';
 
 import styles from './SalaryRangeFilter.module.scss';
 
@@ -34,26 +34,12 @@ export const SalaryRangeFilter: FunctionComponent<SalaryRangeFilterProps> = memo
         min={0}
         max={Number(value.to) || Number.MAX_SAFE_INTEGER}
         placeholder="От"
-        classNames={{
-          input: styles.input,
-          control: styles.control,
-          controlUp: styles.controlUp,
-          controlDown: styles.controlDown,
-          rightSection: styles.controls,
-        }}
       />
       <NumberInput
         value={Number(value.to) || ''}
         onChange={handleChangeTo}
         min={Number(value.from) || 0}
         placeholder="До"
-        classNames={{
-          input: styles.input,
-          control: styles.control,
-          controlUp: styles.controlUp,
-          controlDown: styles.controlDown,
-          rightSection: styles.controls,
-        }}
       />
     </div>
   );
