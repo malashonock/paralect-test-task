@@ -5,3 +5,7 @@ export interface Position {
   title_rus: string;
   url_rus: string;
 }
+
+export type PositionPreview = 
+  & { id: Position['key']; }
+  & Pick<Position, 'key' | 'title'>;
