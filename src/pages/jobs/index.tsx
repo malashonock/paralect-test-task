@@ -18,7 +18,12 @@ const JobsPage: FunctionComponent = () => {
         dispatch={dispatch}
       />
       <div className={styles.main}>
-        <SearchBar dispatch={dispatch} />
+        <SearchBar
+          state={{
+            jobQuery: searchState.jobQuery,
+          }}
+          dispatch={dispatch}
+        />
         <div className={styles.jobs}>
           {JSON.stringify(searchState)}
         </div>
