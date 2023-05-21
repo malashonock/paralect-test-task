@@ -9,11 +9,16 @@
   font-weight: 500;
   line-height: 1.3125rem; // 21px
   
+  &:disabled,
   &:hover {
     background-color: rgba($blue-main-500, 0.9);
   }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
   
-  &:active {
+  &:not(:disabled):active {
     transform: scale(0.99);
   }
 }
