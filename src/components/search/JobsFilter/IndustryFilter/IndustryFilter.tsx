@@ -1,11 +1,9 @@
 import { FunctionComponent, memo, useMemo } from 'react';
-import { Select, SelectItem } from '@mantine/core';
+import { SelectItem } from '@mantine/core';
 
 import { useIndustries } from 'data/hooks';
 import { Industry } from 'data/model';
-
-import styles from './IndustryFilter.module.scss';
-import { ShevronIcon } from '../ShevronIcon';
+import { Select } from 'components/common';
 
 interface IndustryFilterProps {
   value: string;
@@ -31,16 +29,6 @@ export const IndustryFilter: FunctionComponent<IndustryFilterProps> = memo(({ va
       label="Отрасль"
       placeholder="Выберите отрасль"
       data={options}
-      rightSection={<ShevronIcon />}
-      styles={{
-        rightSection: {
-          pointerEvents: 'none'
-        }
-      }}
-      classNames={{
-        label: styles.label,
-        input: styles.input,
-      }}
     />
   );
 });
