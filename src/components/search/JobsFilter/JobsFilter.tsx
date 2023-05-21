@@ -4,6 +4,7 @@ import { ResetFiltersButton } from './ResetFiltersButton';
 import { IndustryFilter } from './IndustryFilter';
 import { SalaryRangeFilter } from './SalaryRangeFilter';
 import { JobFiltersState, SalaryRange, SearchAction, SearchActionType, initialJobFiltersState } from 'reducers/search';
+import { useIsDirty } from './hooks';
 
 import styles from './JobsFilter.module.scss';
 
@@ -15,26 +16,8 @@ interface JobsFilterProps {
 export const JobsFilter: FunctionComponent<JobsFilterProps> = ({ state, dispatch }) => {
   const [industryId, setIndustryId] = useState(initialJobFiltersState.industryId);
   const [salaryRange, setSalaryRange] = useState(initialJobFiltersState.salaryRange);
-  const [isDirty, setIsDirty] = useState(false);
-
-  useEffect(() => {
-    if (
-      state.industryId !== industryId 
-      || state.salaryRange.from !== salaryRange.from 
-      || state.salaryRange.to !== salaryRange.to 
-    ) {
-      if (!isDirty) setIsDirty(true);
-    } else {
-      if (isDirty) setIsDirty(false);
-    }
-  }, [
-    industryId,
-    salaryRange.from,
-    salaryRange.to,
-    state.industryId,
-    state.salaryRange.from,
-    state.salaryRange.to,
-  ]);
+  
+  const isDirty = useIsDirty({ industryId, salaryRange }, state);
 
   const handleResetFilters = useCallback(() => {
     setIndustryId(initialJobFiltersState.industryId);
