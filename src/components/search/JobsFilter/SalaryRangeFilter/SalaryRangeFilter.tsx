@@ -29,7 +29,7 @@ export const SalaryRangeFilter: FunctionComponent<SalaryRangeFilterProps> = memo
     <div className={styles.wrapper}>
       <label className={styles.label}>Оклад</label>
       <NumberInput
-        value={Number(value.from) || undefined}
+        value={Number(value.from) || ''}
         onChange={handleChangeFrom}
         min={0}
         max={Number(value.to) || Number.MAX_SAFE_INTEGER}
@@ -43,7 +43,7 @@ export const SalaryRangeFilter: FunctionComponent<SalaryRangeFilterProps> = memo
         }}
       />
       <NumberInput
-        value={Number(value.to) || undefined}
+        value={Number(value.to) || ''}
         onChange={handleChangeTo}
         min={Number(value.from) || 0}
         placeholder="До"
