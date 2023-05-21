@@ -9,5 +9,14 @@ export default {
 };
 
 export const Default = {
-  args: {},
+  args: {
+    state: {
+      industryId: undefined,
+      salaryRange: {
+        from: undefined,
+        to: undefined,
+      }
+    },
+    dispatch: () => undefined,
+  },
 };
