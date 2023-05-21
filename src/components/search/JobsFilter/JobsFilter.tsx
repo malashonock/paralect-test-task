@@ -1,4 +1,4 @@
-import { Dispatch, FunctionComponent, useCallback, useEffect, useState } from 'react';
+import { Dispatch, FormEvent, FunctionComponent, useCallback, useEffect, useState } from 'react';
 
 import { ResetFiltersButton } from './ResetFiltersButton';
 import { IndustryFilter } from './IndustryFilter';
@@ -49,7 +49,9 @@ export const JobsFilter: FunctionComponent<JobsFilterProps> = ({ state, dispatch
     setSalaryRange(salaryRange);
   }, []);
 
-  const handleSubmit = (): void => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>): void => {
+    event.preventDefault();
+    
     dispatch({
       type: SearchActionType.SetJobFilters,
       payload: {
@@ -60,7 +62,7 @@ export const JobsFilter: FunctionComponent<JobsFilterProps> = ({ state, dispatch
   };
 
   return (
-    <div className={styles.wrapper}>
+    <form action="javascript:void(0)" onSubmit={handleSubmit} className={styles.wrapper}>
       <div className={styles.header}>
         <h2 className={styles.title}>Фильтры</h2>
         <ResetFiltersButton onClick={handleResetFilters} disabled={!isDirty} />
@@ -68,8 +70,8 @@ export const JobsFilter: FunctionComponent<JobsFilterProps> = ({ state, dispatch
       <div className={styles.body}>
         <IndustryFilter value={industryId} onChange={handleIndustryChange} />
         <SalaryRangeFilter value={salaryRange} onChange={handleSalaryRangeChange} />
-        <button className={styles.applyBtn} onClick={handleSubmit} disabled={!isDirty}>Применить</button>
+        <button type="submit" className={styles.applyBtn} disabled={!isDirty}>Применить</button>
       </div>
-    </div>
+    </form>
   );
 };
