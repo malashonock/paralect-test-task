@@ -1,7 +1,7 @@
 import useSWR from 'swr';
 
 import { Industry } from '../model';
-import { buildURL, fetcher } from '../utils';
+import { buildURL, fetcher } from 'utils';
 
 export interface UseIndustriesResult {
   industries: Industry[];
