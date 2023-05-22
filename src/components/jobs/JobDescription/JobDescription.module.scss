@@ -12,15 +12,18 @@
   flex-direction: column;
   row-gap: 1.25rem; // 20px
 
+  @extend .text-base-m-regular;
+
   ul,
   ol {
     margin-top: -0.25rem; // -4px
   }
 
-  p {
-    @extend .title-s-bold;
+  b {
+    @extend .text-base-m-bold;
   }
 
+  p,
   li {
     @extend .text-base-m-regular;
   }
