@@ -1,10 +1,12 @@
 import { ApiResponse, ApiResponseError } from 'data/model';
 
-export const publicFetcher = async <T>(url): Promise<T> => {
+export const publicFetcher = async <T>(url, overriddenOptions?: RequestInit): Promise<T> => {
   const rawResponse = await fetch(url, {
     method: 'GET',
+    ...overriddenOptions,
     headers: {
       'x-secret-key': process.env.NEXT_PUBLIC_PROXY_KEY || '',
+      ...overriddenOptions?.headers,
     },
   });
 
@@ -18,20 +20,10 @@ export const publicFetcher = async <T>(url): Promise<T> => {
 };
 
 export const privateFetcher = (accessToken: string) => async <T>(url): Promise<T> => {
-  const rawResponse = await fetch(url, {
-    method: 'GET',
+  return await publicFetcher<T>(url, {
     headers: {
-      'x-secret-key': process.env.NEXT_PUBLIC_PROXY_KEY || '',
       'x-api-app-id': process.env.NEXT_PUBLIC_CLIENT_SECRET || '',
       'Authorization': `Bearer ${accessToken}`,
     },
   });
-
-  const parsedResponse = await rawResponse.json() as ApiResponse<T>;
-
-  if (Object.prototype.hasOwnProperty.call(parsedResponse, 'error')) {
-    throw (parsedResponse as ApiResponseError).error;
-  }
-
-  return parsedResponse as T;
 };
