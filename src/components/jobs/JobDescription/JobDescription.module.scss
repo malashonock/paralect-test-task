@@ -1,0 +1,27 @@
+@import 'styles/_colors.scss';
+@import 'styles/_typography.scss';
+
+.wrapper {
+  width: 100%;
+  padding: 1.5rem; // 24px;
+  background-color: $white;
+  border: 1px solid $grey-200;
+  border-radius: 0.75rem; // 12px;
+
+  display: flex;
+  flex-direction: column;
+  row-gap: 1.25rem; // 20px
+
+  ul,
+  ol {
+    margin-top: -0.25rem; // -4px
+  }
+
+  p {
+    @extend .title-s-bold;
+  }
+
+  li {
+    @extend .text-base-m-regular;
+  }
+}
