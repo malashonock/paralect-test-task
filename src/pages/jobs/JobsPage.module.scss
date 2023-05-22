@@ -5,8 +5,12 @@
   column-gap: 1.75rem; // 28px
 }
 
+.aside {
+  flex: 0 0 19.6875rem; // 315px
+}
+
 .main {
-  flex-grow: 1;
+  flex: 1 1 auto;
   display: flex;
   flex-direction: column;
   row-gap: 1rem; // 16px;
