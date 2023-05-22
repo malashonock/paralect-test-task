@@ -3,13 +3,11 @@
 @import 'styles/_components.scss';
 
 .wrapper {
-  width: 19.6875rem; // 315px
-  padding: 1.25rem; // 20px
-
   display: flex;
   flex-direction: column;
   row-gap: 2rem; // 32px
-
+  
+  padding: 1.25rem; // 20px
   background-color: $white;
   border: 1px solid $grey-200;
   border-radius: 0.75rem; // 12px
