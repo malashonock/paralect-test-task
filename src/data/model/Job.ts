@@ -8,5 +8,5 @@ export interface Job {
   payment_from?: number; // Min salary
   payment_to?: number; // Max salary
   currency: Currency;
-  vacancy_rich_text: string;
+  vacancyRichText: string;
 }

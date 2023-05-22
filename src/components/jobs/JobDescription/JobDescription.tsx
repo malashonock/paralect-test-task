@@ -11,7 +11,7 @@ export const JobDescription: FunctionComponent<JobDescriptionProps> = ({ job }) 
     <div
       className={styles.wrapper}
       dangerouslySetInnerHTML={{
-        __html: job.vacancy_rich_text,
+        __html: job.vacancyRichText,
       }}
     />
   );
