@@ -1,7 +1,7 @@
 import useSWR from 'swr';
 
 import { Industry } from '../model';
-import { buildURL, fetcher } from 'utils';
+import { buildURL, publicFetcher } from 'utils';
 
 export interface UseIndustriesResult {
   industries: Industry[];
@@ -10,8 +10,9 @@ export interface UseIndustriesResult {
 }
 
 export const useIndustries = (): UseIndustriesResult => {
-  const url = buildURL('/catalogues');
-  const { data, isLoading, error} = useSWR<Industry[]>(url, fetcher);
+  const url = buildURL('/catalogues/');
+  
+  const { data, isLoading, error } = useSWR<Industry[]>(url, publicFetcher);
 
   return {
     industries: data,
