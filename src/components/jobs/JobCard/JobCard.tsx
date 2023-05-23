@@ -2,12 +2,12 @@ import { FunctionComponent } from 'react';
 import cn from 'classnames';
 
 import { Job } from 'data/model';
-
-import styles from './JobCard.module.scss';
 import { JobTitle } from './JobTitle';
 import { JobConditions } from './JobConditions';
 import { JobLocation } from './JobLocation';
 import { FavoriteToggle } from './FavoriteToggle';
+
+import styles from './JobCard.module.scss';
 
 export enum JobCardVariant {
   Link = 'link',
@@ -17,11 +17,12 @@ export enum JobCardVariant {
 interface JobCardProps {
   job: Job;
   variant: JobCardVariant;
+  isFavorite: boolean;
 }
 
 export const JobCard: FunctionComponent<JobCardProps> = (cardProps) => {
-  const { variant } = cardProps;
-
+  const { variant, isFavorite } = cardProps;
+  
   return (
     <div className={cn(styles.wrapper, styles[variant])}>
       <div className={styles.main}>
@@ -30,7 +31,7 @@ export const JobCard: FunctionComponent<JobCardProps> = (cardProps) => {
         <JobLocation {...cardProps} />
       </div>
       <div className={styles.aside}>
-        <FavoriteToggle {...cardProps} />
+        <FavoriteToggle {...cardProps} isFavorite={isFavorite} />
       </div>
     </div>
   );

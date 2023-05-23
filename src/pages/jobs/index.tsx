@@ -1,10 +1,12 @@
 import React, { FunctionComponent, useReducer } from 'react';
+import { useSelector } from 'react-redux';
 
 import { JobsFilter, SearchBar } from 'components/search';
 import { JobCard, JobCardVariant } from 'components/jobs';
 import { searchReducer, initialSearchState } from 'reducers/search';
 import { Job } from 'data/model';
 import { useJobs } from 'data/hooks';
+import { selectSavedJobIds } from 'store';
 
 import styles from './JobsPage.module.scss';
 
@@ -21,6 +23,8 @@ const JobsPage: FunctionComponent = () => {
     // TODO: implement pagination
     page: 1,
   });
+
+  const savedJobIds = useSelector(selectSavedJobIds);
 
   return (
     <div className={styles.wrapper}>
@@ -42,7 +46,12 @@ const JobsPage: FunctionComponent = () => {
         />
         <div className={styles.jobs}>
           {jobsList?.objects.map((job: Job): JSX.Element => (
-            <JobCard key={job.id} job={job} variant={JobCardVariant.Link} />
+            <JobCard
+              key={job.id}
+              job={job}
+              variant={JobCardVariant.Link}
+              isFavorite={savedJobIds.includes(job.id)}
+            />
           ))}
         </div>
       </div>
