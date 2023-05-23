@@ -24,7 +24,7 @@ export const JobConditions: FunctionComponent<JobConditionsProps> = ({ job, vari
       case payment_from > 0:
         return `от ${payment_from} ${currency}`;
       case payment_to > 0:
-        return `до ${payment_from} ${currency}`;
+        return `до ${payment_to} ${currency}`;
       default:
         return 'по договоренности';
     }
