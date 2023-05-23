@@ -17,3 +17,13 @@
   flex-direction: row;
   column-gap: 3.75rem; // 60px
 }
+
+@media (max-width: 30rem /* 480px */) {
+  .logo {
+    display: none;
+  }
+
+  .links {
+    column-gap: 1.5rem; // 24px
+  }
+}

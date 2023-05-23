@@ -68,3 +68,9 @@ $ellipse-width: $ellipse-ratio * $ellipse-height; // let W
   letter-spacing: -0.02rem;
   color: $black;
 }
+
+@media (max-width: 43.75rem /* 700px */) {
+  .text {
+    display: none;
+  }
+}
