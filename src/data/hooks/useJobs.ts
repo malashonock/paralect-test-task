@@ -1,6 +1,7 @@
 import useSWR from 'swr';
 
-import { Job, JobSearchParams, ListResponse } from '../model';
+import { Job } from '../model';
+import { JobSearchParams, ListResponse } from '../dto';
 import { buildURL, privateFetcher } from 'utils';
 
 export interface UseJobsResult {

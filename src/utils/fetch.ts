@@ -1,4 +1,4 @@
-import { ApiResponse, ApiResponseError } from 'data/model';
+import { ApiResponse, ApiResponseError } from 'data/dto';
 
 export const publicFetcher = async <T>(url, overriddenOptions?: RequestInit): Promise<T> => {
   const rawResponse = await fetch(url, {
