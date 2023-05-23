@@ -20,5 +20,5 @@ export const buildQueryString = (searchParams: Record<string, any>): string => {
   );
 
   const queryString: string = new URLSearchParams(stringifiedParams).toString();
-  return queryString ? '?' + encodeURI(queryString) : '';
+  return queryString ? '?' + queryString : '';
 };
