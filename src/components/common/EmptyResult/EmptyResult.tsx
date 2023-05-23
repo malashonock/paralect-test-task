@@ -6,7 +6,7 @@ import notFoundImageSrc from '/public/images/not-found.svg';
 import Link from 'next/link';
 
 interface EmptyResultProps {
-  showHomePageLink: boolean;
+  showHomePageLink?: boolean;
 }
 
 export const EmptyResult: FunctionComponent<EmptyResultProps> = ({ showHomePageLink = false }) => {

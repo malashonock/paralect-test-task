@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 
 import { JobsFilter, SearchBar } from 'components/search';
 import { JobCard, JobCardVariant } from 'components/jobs';
-import { Pagination } from 'components/common';
+import { EmptyResult, Pagination } from 'components/common';
 import { searchReducer, initialSearchState } from 'reducers/search';
 import { Job } from 'data/model';
 import { useJobs } from 'data/hooks';
@@ -49,17 +49,23 @@ const JobsPage: FunctionComponent = () => {
           }}
           dispatch={dispatch}
         />
-        <div className={styles.jobs}>
-          {jobsList?.objects.map((job: Job): JSX.Element => (
-            <JobCard
-              key={job.id}
-              job={job}
-              variant={JobCardVariant.Link}
-              isFavorite={savedJobIds.includes(job.id)}
-            />
-          ))}
-        </div>
-        <Pagination pageCount={pageCount} activePage={activePage} onPageChange={setActivePage} />
+        {jobsList?.objects.length > 0 ? (
+          <>
+            <div className={styles.jobs}>
+              {jobsList.objects.map((job: Job): JSX.Element => (
+                <JobCard
+                  key={job.id}
+                  job={job}
+                  variant={JobCardVariant.Link}
+                  isFavorite={savedJobIds.includes(job.id)}
+                />
+              ))}
+            </div>
+            <Pagination pageCount={pageCount} activePage={activePage} onPageChange={setActivePage} />
+          </>
+        ) : (
+          <EmptyResult />
+        )}
       </div>
     </div>
   );

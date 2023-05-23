@@ -2,7 +2,7 @@ import React, { FunctionComponent, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import { JobCard, JobCardVariant } from 'components/jobs';
-import { Pagination } from 'components/common';
+import { EmptyResult, Pagination } from 'components/common';
 import { Job } from 'data/model';
 import { useJobs } from 'data/hooks';
 import { selectSavedJobIds } from 'store';
@@ -16,7 +16,7 @@ const FavoritesPage: FunctionComponent = () => {
   const MAX_CARDS_PER_PAGE = 4;
 
   const { jobsList } = useJobs({
-    ids: savedJobIds,
+    ids: savedJobIds.length > 0 ? savedJobIds : [-1],
     page: activePage - 1,
     count: MAX_CARDS_PER_PAGE,
   });
@@ -25,15 +25,21 @@ const FavoritesPage: FunctionComponent = () => {
 
   return (
     <div className={styles.wrapper}>
-      {jobsList?.objects.map((job: Job): JSX.Element => (
-        <JobCard
-          key={job.id}
-          job={job}
-          variant={JobCardVariant.Link}
-          isFavorite
-        />
-      ))}
-      <Pagination pageCount={pageCount} activePage={activePage} onPageChange={setActivePage} />
+      {jobsList?.objects.length > 0 ? (
+        <>
+          {jobsList.objects.map((job: Job): JSX.Element => (
+            <JobCard
+              key={job.id}
+              job={job}
+              variant={JobCardVariant.Link}
+              isFavorite
+            />
+          ))}
+          <Pagination pageCount={pageCount} activePage={activePage} onPageChange={setActivePage} />
+        </>
+      ) : (
+        <EmptyResult showHomePageLink />
+      )}
     </div>
   );
 };
