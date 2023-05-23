@@ -1,4 +1,4 @@
-import { FunctionComponent } from 'react';
+import { FunctionComponent, MouseEvent } from 'react';
 import cn from 'classnames';
 import { useDispatch } from 'react-redux'
 
@@ -16,7 +16,10 @@ export const FavoriteToggle: FunctionComponent<FavoriteToggleProps> = ({ job, is
   const { id } = job;
   const dispatch = useDispatch();
 
-  const handleClick = () => {
+  const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
+    event.nativeEvent.preventDefault();
+
     if (isFavorite) {
       dispatch(removeFromFavorites(job.id));
     } else {
