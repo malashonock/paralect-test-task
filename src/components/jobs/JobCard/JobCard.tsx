@@ -21,10 +21,13 @@ interface JobCardProps {
 }
 
 export const JobCard: FunctionComponent<JobCardProps> = (cardProps) => {
-  const { variant, isFavorite } = cardProps;
+  const { job, variant, isFavorite } = cardProps;
   
   return (
-    <div className={cn(styles.wrapper, styles[variant])}>
+    <div
+      className={cn(styles.wrapper, styles[variant])}
+      data-elem={`vacancy-${job.id}`}
+    >
       <div className={styles.main}>
         <JobTitle {...cardProps} />
         <JobConditions {...cardProps} />

@@ -42,8 +42,16 @@ export const SearchBar: FunctionComponent<SearchBarProps> = ({ state, dispatch }
         }}
         placeholder="Введите название вакансии"
         icon={<MagnifierIcon />}
+        data-elem="search-input"
       />
-      <button type="submit" className={styles.submitBtn} disabled={!isDirty}>Поиск</button>
+      <button
+        type="submit"
+        className={styles.submitBtn}
+        disabled={!isDirty}
+        data-elem="search-button"
+      >
+        Поиск
+      </button>
     </form>
   );
 };

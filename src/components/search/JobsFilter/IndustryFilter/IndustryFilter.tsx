@@ -29,6 +29,7 @@ export const IndustryFilter: FunctionComponent<IndustryFilterProps> = memo(({ va
       label="Отрасль"
       placeholder="Выберите отрасль"
       data={options}
+      data-elem="industry-select"
     />
   );
 });

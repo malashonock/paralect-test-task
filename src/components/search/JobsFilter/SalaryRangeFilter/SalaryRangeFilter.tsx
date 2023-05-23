@@ -34,12 +34,14 @@ export const SalaryRangeFilter: FunctionComponent<SalaryRangeFilterProps> = memo
         min={0}
         max={Number(value.to) || Number.MAX_SAFE_INTEGER}
         placeholder="От"
+        data-elem="salary-from-input"
       />
       <NumberInput
         value={Number(value.to) || ''}
         onChange={handleChangeTo}
         min={Number(value.from) || 0}
         placeholder="До"
+        data-elem="salary-to-input"
       />
     </div>
   );

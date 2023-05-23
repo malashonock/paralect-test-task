@@ -54,7 +54,14 @@ export const JobsFilter: FunctionComponent<JobsFilterProps> = ({ state, dispatch
       <div className={styles.body}>
         <IndustryFilter value={industryId} onChange={handleIndustryChange} />
         <SalaryRangeFilter value={salaryRange} onChange={handleSalaryRangeChange} />
-        <button type="submit" className={styles.applyBtn} disabled={!isDirty}>Применить</button>
+        <button
+          type="submit"
+          className={styles.applyBtn}
+          disabled={!isDirty}
+          data-elem="search-button"
+        >
+          Применить
+        </button>
       </div>
     </form>
   );
