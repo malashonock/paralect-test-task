@@ -21,7 +21,7 @@ const JobsPage: FunctionComponent = () => {
     payment_to: salaryRange.to,
     keyword: jobQuery,
     // TODO: implement pagination
-    page: 1,
+    page: 0,
   });
 
   const savedJobIds = useSelector(selectSavedJobIds);
