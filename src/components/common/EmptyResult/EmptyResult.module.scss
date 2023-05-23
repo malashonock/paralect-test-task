@@ -1,0 +1,35 @@
+@import 'styles/_colors.scss';
+@import 'styles/_typography.scss';
+
+.wrapper {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 7.5rem; // 120px
+  row-gap: 2rem; // 32px
+}
+
+.text {
+  @extend %font-base;
+  color: $grey-900;
+}
+
+.homeLink {
+  padding: 0.625rem 1.5rem; // 10px 24px
+  border-radius: 0.5rem; // 8px
+  background-color: $blue-100;
+  @extend .subtitle-s-regular;
+  font-weight: 600;
+  line-height: 155%; // 22px
+  color: $blue-600;
+
+  &:hover,
+  &:active {
+    background-color: $blue-200;
+  }
+
+  &:active {
+    transform: scale(0.99);
+  }
+}
