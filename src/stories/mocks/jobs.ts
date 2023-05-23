@@ -12,5 +12,5 @@ export const job: Job = {
   town: {
     title: 'Новый Уренгой',
   },
-  vacancy_rich_text: '<p>Обязанности:</p><ul><li>Разработка и сопровождение веб-проектов.</li></ul><p>Требования:</p><ul><li>Высшее образование;</li><li>Знание английского языка;</li><li>Знание HTML, PHP, CSS, JavaScript, MySQL, PostgreSQL, NodeJS, WebPack, Babel, Gulp, Git, React, Vue, Redis;</li><li>Знания в области ГИС - протоколы, форматы (GeoTIFF, GeoJSON etc).</li></ul><p>Условия:</p><ul><li>Полная занятость.</li></ul>'
+  vacancyRichText: '<p>Обязанности:</p><ul><li>Разработка и сопровождение веб-проектов.</li></ul><p>Требования:</p><ul><li>Высшее образование;</li><li>Знание английского языка;</li><li>Знание HTML, PHP, CSS, JavaScript, MySQL, PostgreSQL, NodeJS, WebPack, Babel, Gulp, Git, React, Vue, Redis;</li><li>Знания в области ГИС - протоколы, форматы (GeoTIFF, GeoJSON etc).</li></ul><p>Условия:</p><ul><li>Полная занятость.</li></ul>'
 };
