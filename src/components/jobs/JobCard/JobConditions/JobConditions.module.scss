@@ -46,20 +46,24 @@ $marker-width: 0.5625rem; // 9px
   }
 }
 
-@media (max-width: 36rem /* 576px */) {
-  .wrapper {
+@media (max-width: 40rem /* 640px */) {
+  .wrapper.opened {
     flex-direction: column;
-
-    &.link {
-      row-gap: 0.75rem; // 12px
-    }
-  
-    &.opened {
-      row-gap: 1rem; // 16px
+    row-gap: 1rem; // 16px
+    
+    .schedule::before {
+      display: none;
     }
   }
+}
 
-  .schedule::before {
-    display: none;
+@media (max-width: 36rem /* 576px */) {
+  .wrapper.link {
+    flex-direction: column;
+    row-gap: 0.75rem; // 12px
+    
+    .schedule::before {
+      display: none;
+    }
   }
 }
