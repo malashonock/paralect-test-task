@@ -1,5 +1,4 @@
 import { FunctionComponent } from 'react';
-import Link from 'next/link';
 import cn from 'classnames';
 
 import { JobCardVariant } from '../JobCard';
@@ -13,14 +12,10 @@ interface JobTitleProps {
 }
 
 export const JobTitle: FunctionComponent<JobTitleProps> = ({ job, variant }) => {
-  const { id, profession } = job;
+  const { profession } = job;
 
-  return variant === JobCardVariant.Link ? (
-    <Link href={`/jobs/${id}`} className={cn(styles.text, styles[JobCardVariant.Link])}>
-      {profession}
-    </Link>
-  ) : (
-    <h1 className={cn(styles.text, styles[JobCardVariant.Opened])}>
+  return (
+    <h1 className={cn(styles.text, styles[variant])}>
       {profession}
     </h1>
   );

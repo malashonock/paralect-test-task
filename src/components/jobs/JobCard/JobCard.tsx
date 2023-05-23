@@ -1,5 +1,6 @@
 import { FunctionComponent } from 'react';
 import cn from 'classnames';
+import Link from 'next/link';
 
 import { Job } from 'data/model';
 import { JobTitle } from './JobTitle';
@@ -8,6 +9,7 @@ import { JobLocation } from './JobLocation';
 import { FavoriteToggle } from './FavoriteToggle';
 
 import styles from './JobCard.module.scss';
+import { ConditionalWrapper } from 'components/common';
 
 export enum JobCardVariant {
   Link = 'link',
@@ -24,9 +26,17 @@ export const JobCard: FunctionComponent<JobCardProps> = (cardProps) => {
   const { job, variant, isFavorite } = cardProps;
   
   return (
-    <div
-      className={cn(styles.wrapper, styles[variant])}
-      data-elem={`vacancy-${job.id}`}
+    <ConditionalWrapper
+      condition={variant === JobCardVariant.Link}
+      wrapperIfTrue={Link}
+      wrapperIfTrueProps={{
+        href: `/jobs/${job.id}`,
+      }}
+      wrapperIfFalse="div"
+      commonProps={{
+        className: cn(styles.wrapper, styles[variant]),
+        'data-elem': `vacancy-${job.id}`,
+      }}
     >
       <div className={styles.main}>
         <JobTitle {...cardProps} />
@@ -36,6 +46,6 @@ export const JobCard: FunctionComponent<JobCardProps> = (cardProps) => {
       <div className={styles.aside}>
         <FavoriteToggle {...cardProps} isFavorite={isFavorite} />
       </div>
-    </div>
+    </ConditionalWrapper>
   );
 };
