@@ -1,13 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import { favoritesSlice } from './slices';
+import { favoritesSlice, authSlice, searchSlice } from './slices';
 import { localStorageMiddleware } from './middleware';
-import authSlice from './slices/auth.slice';
 
 export const store = configureStore({
   reducer: {
     [favoritesSlice.name]: favoritesSlice.reducer,
     [authSlice.name]: authSlice.reducer,
+    [searchSlice.name]: searchSlice.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(localStorageMiddleware),
