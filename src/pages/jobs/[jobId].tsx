@@ -7,22 +7,29 @@ import { useJob } from 'data/hooks';
 import { selectSavedJobIds } from 'store';
 
 import styles from './JobPage.module.scss';
+import { LoadingProgress } from 'components/common';
 
 const JobPage: FunctionComponent = () => {
   const { query } = useRouter();
   const { jobId } = query;
 
-  const { job } = useJob(jobId as string);
+  const { job, isLoading } = useJob(jobId as string);
   const savedJobIds = useSelector(selectSavedJobIds);
 
   return job ? (
     <div className={styles.wrapper}>
-      <JobCard
-        job={job}
-        variant={JobCardVariant.Opened}
-        isFavorite={savedJobIds.includes(job.id)}
-      />
-      <JobDescription job={job} />
+      {isLoading ? (
+        <LoadingProgress hint="Загрузка данных вакансии..." />
+      ) : (
+        <>
+          <JobCard
+            job={job}
+            variant={JobCardVariant.Opened}
+            isFavorite={savedJobIds.includes(job.id)}
+          />
+          <JobDescription job={job} />
+        </>
+      )}
     </div>
   ) : null;
 };

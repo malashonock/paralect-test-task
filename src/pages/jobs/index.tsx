@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 
 import { JobsFilter, SearchBar } from 'components/search';
 import { JobCard, JobCardVariant } from 'components/jobs';
-import { EmptyResult, Pagination } from 'components/common';
+import { EmptyResult, LoadingProgress, Pagination } from 'components/common';
 import { searchReducer, initialSearchState } from 'reducers/search';
 import { Job } from 'data/model';
 import { useJobs } from 'data/hooks';
@@ -18,7 +18,7 @@ const JobsPage: FunctionComponent = () => {
   const [activePage, setActivePage] = useState(1);
   const MAX_CARDS_PER_PAGE = 4;
 
-  const { jobsList } = useJobs({
+  const { jobsList, isLoading } = useJobs({
     catalogues: industryId,
     payment_from: salaryRange.from,
     payment_to: salaryRange.to,
@@ -64,7 +64,11 @@ const JobsPage: FunctionComponent = () => {
             <Pagination pageCount={pageCount} activePage={activePage} onPageChange={setActivePage} />
           </>
         ) : (
-          <EmptyResult />
+          isLoading ? (
+            <LoadingProgress hint="Ищем вакансии..." />
+          ) : (
+            <EmptyResult />
+          )
         )}
       </div>
     </div>
