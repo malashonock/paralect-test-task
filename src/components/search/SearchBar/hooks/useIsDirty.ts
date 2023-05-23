@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { JobQueryState } from 'reducers/search';
+import { JobQueryState } from 'store/types';
 
 export const useIsDirty = (currentState: JobQueryState, submittedState: JobQueryState): boolean => {
   const [isDirty, setIsDirty] = useState(false);

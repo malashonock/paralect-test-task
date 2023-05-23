@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react';
 
-import { JobFiltersState } from 'reducers/search';
+import { JobFiltersState } from 'store/types';
 
-export const useIsReset = (currentState: JobFiltersState, initialState: JobFiltersState): boolean => {
+export const useIsReset = (currentState: JobFiltersState, clearedState: JobFiltersState): boolean => {
   const [isReset, setIsReset] = useState(false);
   
   useEffect(() => {
     if (
-      initialState.industryId !== currentState.industryId 
-      || initialState.salaryRange.from !== currentState.salaryRange.from 
-      || initialState.salaryRange.to !== currentState.salaryRange.to 
+      clearedState.industryId !== currentState.industryId 
+      || clearedState.salaryFrom !== currentState.salaryFrom 
+      || clearedState.salaryTo !== currentState.salaryTo 
     ) {
       if (!isReset) setIsReset(true);
     } else {
@@ -17,11 +17,11 @@ export const useIsReset = (currentState: JobFiltersState, initialState: JobFilte
     }
   }, [
     currentState.industryId,
-    currentState.salaryRange.from,
-    currentState.salaryRange.to,
-    initialState.industryId,
-    initialState.salaryRange.from,
-    initialState.salaryRange.to,
+    currentState.salaryFrom,
+    currentState.salaryTo,
+    clearedState.industryId,
+    clearedState.salaryFrom,
+    clearedState.salaryTo,
   ]);
 
   return isReset;

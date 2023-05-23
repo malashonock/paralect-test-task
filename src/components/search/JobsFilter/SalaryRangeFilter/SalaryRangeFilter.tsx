@@ -1,27 +1,27 @@
 import { FunctionComponent, memo } from 'react';
 
-import { SalaryRange } from 'reducers/search';
+import { SalaryFilterState } from 'store/types';
 import { NumberInput } from 'components/common';
 
 import styles from './SalaryRangeFilter.module.scss';
 
 interface SalaryRangeFilterProps {
-  value: SalaryRange;
-  onChange: (salaryRange: SalaryRange) => void;
+  value: SalaryFilterState;
+  onChange: (salaryRange: SalaryFilterState) => void;
 }
 
 export const SalaryRangeFilter: FunctionComponent<SalaryRangeFilterProps> = memo(({ value, onChange }) => {
   const handleChangeFrom = (from: number | ''): void => {
     onChange({
       ...value,
-      from: String(from),
+      salaryFrom: String(from),
     });
   };
 
   const handleChangeTo = (to: number | ''): void => {
     onChange({
       ...value,
-      to: String(to),
+      salaryTo: String(to),
     });
   };
 
@@ -29,17 +29,17 @@ export const SalaryRangeFilter: FunctionComponent<SalaryRangeFilterProps> = memo
     <div className={styles.wrapper}>
       <label className={styles.label}>Оклад</label>
       <NumberInput
-        value={Number(value.from) || ''}
+        value={Number(value.salaryFrom) || ''}
         onChange={handleChangeFrom}
         min={0}
-        max={Number(value.to) || Number.MAX_SAFE_INTEGER}
+        max={Number(value.salaryTo) || Number.MAX_SAFE_INTEGER}
         placeholder="От"
         data-elem="salary-from-input"
       />
       <NumberInput
-        value={Number(value.to) || ''}
+        value={Number(value.salaryTo) || ''}
         onChange={handleChangeTo}
-        min={Number(value.from) || 0}
+        min={Number(value.salaryFrom) || 0}
         placeholder="До"
         data-elem="salary-to-input"
       />

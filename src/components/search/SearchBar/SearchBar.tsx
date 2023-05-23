@@ -1,23 +1,25 @@
-import { ChangeEvent, Dispatch, FormEvent, FunctionComponent, useRef, useState } from 'react';
+import { ChangeEvent, FormEvent, FunctionComponent, useState } from 'react';
 import { Input } from '@mantine/core';
 import cn from 'classnames';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { MagnifierIcon } from './MagnifierIcon';
-import { JobQueryState, SearchAction, SearchActionType, initialJobQueryState } from 'reducers/search';
+import { useIsDirty } from './hooks';
+import { selectJobQuery, submitJobQuery } from 'store';
 
 import styles from './SearchBar.module.scss';
-import { useIsDirty } from './hooks';
 
 interface SearchBarProps {
-  state: JobQueryState;
-  dispatch: Dispatch<SearchAction>;
   className?: string;
 }
 
-export const SearchBar: FunctionComponent<SearchBarProps> = ({ state, dispatch, className }) => {
-  const [jobQuery, setJobQuery] = useState(initialJobQueryState.jobQuery);
+export const SearchBar: FunctionComponent<SearchBarProps> = ({ className }) => {
+  const submittedJobQueryState = useSelector(selectJobQuery);
+  const dispatch = useDispatch();
 
-  const isDirty = useIsDirty({ jobQuery }, state);
+  const [jobQuery, setJobQuery] = useState(submittedJobQueryState.jobQuery);
+
+  const isDirty = useIsDirty({ jobQuery }, submittedJobQueryState);
 
   const handleQueryChange = (event: ChangeEvent<HTMLInputElement>) => {
     setJobQuery(event.target.value);
@@ -25,13 +27,9 @@ export const SearchBar: FunctionComponent<SearchBarProps> = ({ state, dispatch, 
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
-
-    dispatch({
-      type: SearchActionType.SetJobQuery,
-      payload: {
-        jobQuery,
-      },
-    });
+    dispatch(submitJobQuery({ 
+      jobQuery: jobQuery || undefined,
+    }));
   };
 
   return (

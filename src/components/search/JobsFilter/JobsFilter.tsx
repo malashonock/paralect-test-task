@@ -1,50 +1,59 @@
-import { Dispatch, FormEvent, FunctionComponent, useCallback, useState } from 'react';
+import { FormEvent, FunctionComponent, useCallback, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import cn from 'classnames';
 
 import { ResetFiltersButton } from './ResetFiltersButton';
 import { IndustryFilter } from './IndustryFilter';
 import { SalaryRangeFilter } from './SalaryRangeFilter';
-import { JobFiltersState, SalaryRange, SearchAction, SearchActionType, initialJobFiltersState } from 'reducers/search';
 import { useIsDirty, useIsReset } from './hooks';
+import { selectJobFilters, submitJobFilters } from 'store';
+import { JobFiltersState, SalaryFilterState } from 'store/types';
 
 import styles from './JobsFilter.module.scss';
 
+const clearedJobFiltersState: JobFiltersState = {
+  industryId: undefined,
+  salaryFrom: undefined,
+  salaryTo: undefined,
+}
+
 interface JobsFilterProps {
-  state: JobFiltersState;
-  dispatch: Dispatch<SearchAction>;
   className?: string;
 }
 
-export const JobsFilter: FunctionComponent<JobsFilterProps> = ({ state, dispatch, className }) => {
-  const [industryId, setIndustryId] = useState(initialJobFiltersState.industryId);
-  const [salaryRange, setSalaryRange] = useState(initialJobFiltersState.salaryRange);
+export const JobsFilter: FunctionComponent<JobsFilterProps> = ({ className }) => {
+  const submittedJobFiltersState = useSelector(selectJobFilters);
+  const dispatch = useDispatch();
+
+  const [industryId, setIndustryId] = useState(submittedJobFiltersState.industryId);
+  const [salaryFrom, setSalaryFrom] = useState(submittedJobFiltersState.salaryFrom);
+  const [salaryTo, setSalaryTo] = useState(submittedJobFiltersState.salaryTo);
   
-  const isDirty = useIsDirty({ industryId, salaryRange }, state);
-  const isReset = useIsReset({ industryId, salaryRange }, initialJobFiltersState);
+  const isDirty = useIsDirty({ industryId, salaryFrom, salaryTo }, submittedJobFiltersState);
+  const isReset = useIsReset({ industryId, salaryFrom, salaryTo }, clearedJobFiltersState);
 
   const handleResetFilters = useCallback(() => {
-    setIndustryId(initialJobFiltersState.industryId);
-    setSalaryRange(initialJobFiltersState.salaryRange);
+    setIndustryId(clearedJobFiltersState.industryId);
+    setSalaryFrom(clearedJobFiltersState.salaryFrom);
+    setSalaryTo(clearedJobFiltersState.salaryTo);
   }, []);
 
   const handleIndustryChange = useCallback((industryId: string) => {
     setIndustryId(industryId);
   }, []);
 
-  const handleSalaryRangeChange = useCallback((salaryRange: SalaryRange) => {
-    setSalaryRange(salaryRange);
+  const handleSalaryRangeChange = useCallback((salaryRange: SalaryFilterState) => {
+    setSalaryFrom(salaryRange.salaryFrom);
+    setSalaryTo(salaryRange.salaryTo);
   }, []);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
-    
-    dispatch({
-      type: SearchActionType.SetJobFilters,
-      payload: {
-        industryId,
-        salaryRange,
-      },
-    });
+    dispatch(submitJobFilters({
+      industryId,
+      salaryFrom,
+      salaryTo,
+    }));
   };
 
   return (
@@ -55,7 +64,7 @@ export const JobsFilter: FunctionComponent<JobsFilterProps> = ({ state, dispatch
       </div>
       <div className={styles.body}>
         <IndustryFilter value={industryId} onChange={handleIndustryChange} />
-        <SalaryRangeFilter value={salaryRange} onChange={handleSalaryRangeChange} />
+        <SalaryRangeFilter value={{ salaryFrom, salaryTo }} onChange={handleSalaryRangeChange} />
         <button
           type="submit"
           className={styles.applyBtn}

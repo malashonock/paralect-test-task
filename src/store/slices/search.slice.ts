@@ -15,28 +15,22 @@ export const searchSlice = createSlice({
   name: 'search',
   initialState,
   reducers: {
-    setJobFilters: (state: SearchState, action: PayloadAction<JobFiltersState>): SearchState => {
+    submitJobFilters: (state: SearchState, action: PayloadAction<JobFiltersState>): SearchState => {
       return {
         ...state,
         ...action.payload,
       };
     },
-    clearJobFilters: (state: SearchState): void => {
-      delete state.industryId;
-      delete state.salaryFrom;
-      delete state.salaryTo;
-    },
-    setJobQuery: (state: SearchState, action: PayloadAction<JobQueryState>): SearchState => {
+    submitJobQuery: (state: SearchState, action: PayloadAction<JobQueryState>): SearchState => {
       return {
         ...state,
         ...action.payload,
       };
-    },
-    clearJobQuery: (state: SearchState): void => {
-      delete state.jobQuery;
     },
   },
 });
+
+export const { submitJobFilters, submitJobQuery } = searchSlice.actions;
 
 export const selectSearchCriteria = (state: RootState): SearchState =>
   state.search;

@@ -1,5 +1,5 @@
-export interface JobFiltersState {
+import { SalaryFilterState } from '.';
+
+export type JobFiltersState = {
   industryId?: string;
-  salaryFrom?: string;
-  salaryTo?: string;
-}
+} & SalaryFilterState;

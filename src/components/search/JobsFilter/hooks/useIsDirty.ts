@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { JobFiltersState } from 'reducers/search';
+import { JobFiltersState } from 'store/types';
 
 export const useIsDirty = (currentState: JobFiltersState, submittedState: JobFiltersState): boolean => {
   const [isDirty, setIsDirty] = useState(false);
@@ -8,8 +8,8 @@ export const useIsDirty = (currentState: JobFiltersState, submittedState: JobFil
   useEffect(() => {
     if (
       submittedState.industryId !== currentState.industryId 
-      || submittedState.salaryRange.from !== currentState.salaryRange.from 
-      || submittedState.salaryRange.to !== currentState.salaryRange.to 
+      || submittedState.salaryFrom !== currentState.salaryFrom 
+      || submittedState.salaryTo !== currentState.salaryTo 
     ) {
       if (!isDirty) setIsDirty(true);
     } else {
@@ -17,11 +17,11 @@ export const useIsDirty = (currentState: JobFiltersState, submittedState: JobFil
     }
   }, [
     currentState.industryId,
-    currentState.salaryRange.from,
-    currentState.salaryRange.to,
+    currentState.salaryFrom,
+    currentState.salaryTo,
     submittedState.industryId,
-    submittedState.salaryRange.from,
-    submittedState.salaryRange.to,
+    submittedState.salaryFrom,
+    submittedState.salaryTo,
   ]);
 
   return isDirty;
