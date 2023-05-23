@@ -21,17 +21,23 @@ export const publicFetcher = async <T>(url, overriddenOptions?: RequestInit): Pr
   return parsedResponse as T;
 };
 
-export const privateFetcher = async <T>(url): Promise<T> => {
+export const privateFetcher = async <T>(url, callsCount = 0): Promise<T> => {
+  const MAX_CALLS_COUNT = 4;
+
+  if (callsCount > MAX_CALLS_COUNT) {
+    throw Error('Too many retries, please try again later');
+  }
+
   const { accessToken, refreshToken, tokenExpiryDate } = store.getState().auth;
 
   if (!accessToken || !refreshToken || !tokenExpiryDate) {
     store.dispatch(logIn());
-    return await privateFetcher(url); // Retry
+    return await privateFetcher(url, ++callsCount); // Retry
   }
 
   if (new Date(tokenExpiryDate * 1000) < new Date()) {
     await store.dispatch(refreshTokenSet());
-    return await privateFetcher(url); // Retry
+    return await privateFetcher(url, ++callsCount); // Retry
   }
   
   const headers: HeadersInit = {
@@ -50,12 +56,12 @@ export const privateFetcher = async <T>(url): Promise<T> => {
         || errorCode === 404 && errorType === 'token_not_found'
       ) {
         store.dispatch(logIn());
-        return await privateFetcher(url); // Retry
+        return await privateFetcher(url, ++callsCount); // Retry
       }
 
       if (errorCode === 410 && errorType === 'invalid_token') {
         store.dispatch(refreshTokenSet());
-        return await privateFetcher(url); // Retry
+        return await privateFetcher(url, ++callsCount); // Retry
       }
     }
 
