@@ -1,5 +1,6 @@
 import { ChangeEvent, Dispatch, FormEvent, FunctionComponent, useRef, useState } from 'react';
 import { Input } from '@mantine/core';
+import cn from 'classnames';
 
 import { MagnifierIcon } from './MagnifierIcon';
 import { JobQueryState, SearchAction, SearchActionType, initialJobQueryState } from 'reducers/search';
@@ -8,11 +9,12 @@ import styles from './SearchBar.module.scss';
 import { useIsDirty } from './hooks';
 
 interface SearchBarProps {
-  state: JobQueryState,
-  dispatch: Dispatch<SearchAction>
+  state: JobQueryState;
+  dispatch: Dispatch<SearchAction>;
+  className?: string;
 }
 
-export const SearchBar: FunctionComponent<SearchBarProps> = ({ state, dispatch }) => {
+export const SearchBar: FunctionComponent<SearchBarProps> = ({ state, dispatch, className }) => {
   const [jobQuery, setJobQuery] = useState(initialJobQueryState.jobQuery);
 
   const isDirty = useIsDirty({ jobQuery }, state);
@@ -33,7 +35,7 @@ export const SearchBar: FunctionComponent<SearchBarProps> = ({ state, dispatch }
   };
 
   return (
-    <form onSubmit={handleSubmit} className={styles.wrapper}>
+    <form onSubmit={handleSubmit} className={cn(className, styles.wrapper)}>
       <Input
         value={jobQuery}
         onChange={handleQueryChange}

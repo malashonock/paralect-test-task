@@ -33,44 +33,47 @@ const JobsPage: FunctionComponent = () => {
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles.aside}>
-        <JobsFilter
-          state={{
-            industryId: searchState.industryId,
-            salaryRange: searchState.salaryRange,
-          }}
-          dispatch={dispatch}
-        />
-      </div>
-      <div className={styles.main}>
-        <SearchBar
-          state={{
-            jobQuery: searchState.jobQuery,
-          }}
-          dispatch={dispatch}
-        />
-        {jobsList?.objects.length > 0 ? (
-          <>
-            <div className={styles.jobs}>
-              {jobsList.objects.map((job: Job): JSX.Element => (
-                <JobCard
-                  key={job.id}
-                  job={job}
-                  variant={JobCardVariant.Link}
-                  isFavorite={savedJobIds.includes(job.id)}
-                />
-              ))}
-            </div>
-            <Pagination pageCount={pageCount} activePage={activePage} onPageChange={setActivePage} />
-          </>
+      <JobsFilter
+        state={{
+          industryId: searchState.industryId,
+          salaryRange: searchState.salaryRange,
+        }}
+        dispatch={dispatch}
+        className={styles.filters}
+      />
+      <SearchBar
+        state={{
+          jobQuery: searchState.jobQuery,
+        }}
+        dispatch={dispatch}
+        className={styles.searchBar}
+      />
+      {jobsList?.objects.length > 0 ? (
+        <>
+          <div className={styles.jobs}>
+            {jobsList.objects.map((job: Job): JSX.Element => (
+              <JobCard
+                key={job.id}
+                job={job}
+                variant={JobCardVariant.Link}
+                isFavorite={savedJobIds.includes(job.id)}
+              />
+            ))}
+          </div>
+          <Pagination
+            pageCount={pageCount}
+            activePage={activePage}
+            onPageChange={setActivePage}
+            className={styles.pagination}
+          />
+        </>
+      ) : (
+        isLoading ? (
+          <LoadingProgress hint="Загружаем вакансии..." />
         ) : (
-          isLoading ? (
-            <LoadingProgress hint="Ищем вакансии..." />
-          ) : (
-            <EmptyResult />
-          )
-        )}
-      </div>
+          <EmptyResult />
+        )
+      )}
     </div>
   );
 };

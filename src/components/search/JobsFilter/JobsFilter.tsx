@@ -1,4 +1,5 @@
-import { Dispatch, FormEvent, FunctionComponent, useCallback, useEffect, useState } from 'react';
+import { Dispatch, FormEvent, FunctionComponent, useCallback, useState } from 'react';
+import cn from 'classnames';
 
 import { ResetFiltersButton } from './ResetFiltersButton';
 import { IndustryFilter } from './IndustryFilter';
@@ -11,9 +12,10 @@ import styles from './JobsFilter.module.scss';
 interface JobsFilterProps {
   state: JobFiltersState;
   dispatch: Dispatch<SearchAction>;
+  className?: string;
 }
 
-export const JobsFilter: FunctionComponent<JobsFilterProps> = ({ state, dispatch }) => {
+export const JobsFilter: FunctionComponent<JobsFilterProps> = ({ state, dispatch, className }) => {
   const [industryId, setIndustryId] = useState(initialJobFiltersState.industryId);
   const [salaryRange, setSalaryRange] = useState(initialJobFiltersState.salaryRange);
   
@@ -46,7 +48,7 @@ export const JobsFilter: FunctionComponent<JobsFilterProps> = ({ state, dispatch
   };
 
   return (
-    <form onSubmit={handleSubmit} className={styles.wrapper}>
+    <form onSubmit={handleSubmit} className={cn(className, styles.wrapper)}>
       <div className={styles.header}>
         <h2 className={styles.title}>Фильтры</h2>
         <ResetFiltersButton onClick={handleResetFilters} disabled={!isReset} />
