@@ -1,0 +1,12 @@
+@import 'styles/_typography.scss';
+
+.text {
+  &.link {
+    @extend .title-s-semibold;
+    color: $blue-main-500;
+  }
+
+  &.opened {
+    @extend .title-l-bold;
+  }
+}

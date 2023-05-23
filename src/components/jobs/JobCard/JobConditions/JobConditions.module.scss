@@ -1,0 +1,47 @@
+@import 'styles/_typography.scss';
+
+$marker-margin: 0.75rem; // 12px
+$marker-width: 0.5625rem; // 9px
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  column-gap: calc(2 * $marker-margin + $marker-width);
+
+  .schedule {
+    position: relative;
+
+    &::before {
+      content: '•';
+      color: $grey-600;
+      font-size: 1.25rem; // 20px
+
+      position: absolute;
+      left: calc(-1 * ($marker-margin + $marker-width));
+      top: 50%;
+      transform: translateY(-50%);
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  &.link {
+    @extend .text-base-m-regular;
+    line-height: 125%; // 20px;
+
+    .salary {
+      font-weight: 600;
+    }
+  }
+
+  &.opened {
+    @extend .title-s-bold;
+    font-weight: normal; // 400
+    
+    .salary {
+      font-weight: bold; // 700
+    }
+  }
+}

@@ -1,0 +1,18 @@
+@import 'styles/_typography.scss';
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  column-gap: 0.5rem; // 8px
+  align-items: center;
+
+  &.link {
+    .text {
+      line-height: 118.75%; // 19px
+    }
+  }
+}
+
+.text {
+  @extend .text-base-m-regular;
+}

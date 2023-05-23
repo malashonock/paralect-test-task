@@ -1,0 +1,17 @@
+@import "styles/_colors.scss";
+@import "styles/_typography.scss";
+@import "styles/_mixins.scss";
+
+.link {
+  @extend %font-base;
+  font-weight: normal; // 400
+  font-size: 1rem; // 16px
+  line-height: 125%; // 20px
+
+  &.active,
+  &:hover,
+  &:active {
+    color: $blue-main-500;
+    @include smooth-transition(color);
+  }
+}

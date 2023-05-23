@@ -1,0 +1,11 @@
+@import 'styles/_typography.scss';
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.5rem; // 8px
+}
+
+.label {
+  @extend .text-base-m-bold;
+}

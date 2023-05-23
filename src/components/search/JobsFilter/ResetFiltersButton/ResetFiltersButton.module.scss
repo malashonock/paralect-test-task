@@ -1,0 +1,64 @@
+@use 'sass:math';
+
+@import 'styles/_colors.scss';
+@import 'styles/_typography.scss';
+
+$close-icon-size: 1rem; // 16px
+$close-icon-line-height: 2.5px;
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  column-gap: 0.25rem; // 4px
+  align-items: center;
+
+  &:disabled {
+    cursor: not-allowed;
+    
+    .text {
+      color: $grey-300;
+    }
+
+    .line {
+      border-color: $grey-300;
+    }
+  }
+
+  &:not(:disabled):hover,
+  &:active {
+    opacity: 0.8;
+  }
+}
+
+.text {
+  @extend .subtitle-s-regular;
+  font-weight: 500;
+  color: $grey-500;
+}
+
+.closeIcon {
+  width: $close-icon-size;
+  height: $close-icon-size;
+
+  position: relative;
+}
+
+.line {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform-origin: center;
+
+  // see hypotenuse length formula
+  width: calc(57% * math.sqrt(2) - $close-icon-line-height);
+  height: 0;
+  border: ($close-icon-line-height / 2) solid $grey-500;
+
+  &.bl2ur {
+    transform: translate(-50%, -50%) rotate(-45deg);
+  }
+  
+  &.ul2br {
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+}
