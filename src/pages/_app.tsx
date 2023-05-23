@@ -7,11 +7,11 @@ import cn from 'classnames';
 import { Layout } from 'components/common';
 
 import 'styles/index.scss';
-import { inter, poppins } from 'styles/fonts';
+import { inter, poppins, roboto } from 'styles/fonts';
 
 const App: FunctionComponent<AppProps> = ({ Component, pageProps }) => {
   return (
-    <div className={cn(inter.variable, poppins.variable)}>
+    <div className={cn(inter.variable, poppins.variable, roboto.variable)}>
       <Provider store={store}>
         <Layout>
           <Component {...pageProps} />
