@@ -10,9 +10,10 @@ import styles from './FavoriteToggle.module.scss';
 interface FavoriteToggleProps {
   job: Job;
   isFavorite: boolean;
+  className?: string;
 }
 
-export const FavoriteToggle: FunctionComponent<FavoriteToggleProps> = ({ job, isFavorite }) => {
+export const FavoriteToggle: FunctionComponent<FavoriteToggleProps> = ({ job, isFavorite, className }) => {
   const { id } = job;
   const dispatch = useDispatch();
 
@@ -30,7 +31,7 @@ export const FavoriteToggle: FunctionComponent<FavoriteToggleProps> = ({ job, is
   return (
     <button
       onClick={handleClick}
-      className={cn(styles.button, { [styles.pressed]: isFavorite })}
+      className={cn(className, styles.button, { [styles.pressed]: isFavorite })}
       data-elem={`vacancy-${id}-shortlist-button`}
     >
       <svg className={styles.icon} width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">

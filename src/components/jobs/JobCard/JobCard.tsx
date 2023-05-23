@@ -38,14 +38,10 @@ export const JobCard: FunctionComponent<JobCardProps> = (cardProps) => {
         'data-elem': `vacancy-${job.id}`,
       }}
     >
-      <div className={styles.main}>
-        <JobTitle {...cardProps} />
-        <JobConditions {...cardProps} />
-        <JobLocation {...cardProps} />
-      </div>
-      <div className={styles.aside}>
-        <FavoriteToggle {...cardProps} isFavorite={isFavorite} />
-      </div>
+      <JobTitle className={styles.title} {...cardProps} />
+      <JobConditions className={styles.conditions} {...cardProps} />
+      <JobLocation className={styles.location} {...cardProps} />
+      <FavoriteToggle className={styles.favoriteBtn} {...cardProps} isFavorite={isFavorite} />
     </ConditionalWrapper>
   );
 };

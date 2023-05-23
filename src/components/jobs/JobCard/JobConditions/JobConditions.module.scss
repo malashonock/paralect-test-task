@@ -7,30 +7,11 @@ $marker-width: 0.5625rem; // 9px
   display: flex;
   flex-direction: row;
   column-gap: calc(2 * $marker-margin + $marker-width);
-
-  .schedule {
-    position: relative;
-
-    &::before {
-      content: '•';
-      color: $grey-600;
-      font-size: 1.25rem; // 20px
-
-      position: absolute;
-      left: calc(-1 * ($marker-margin + $marker-width));
-      top: 50%;
-      transform: translateY(-50%);
-
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-  }
-
+  
   &.link {
     @extend .text-base-m-regular;
     line-height: 125%; // 20px;
-
+    
     .salary {
       font-weight: 600;
     }
@@ -43,5 +24,42 @@ $marker-width: 0.5625rem; // 9px
     .salary {
       font-weight: bold; // 700
     }
+  }
+}
+
+.schedule {
+  position: relative;
+
+  &::before {
+    content: '•';
+    color: $grey-600;
+    font-size: 1.25rem; // 20px
+
+    position: absolute;
+    left: calc(-1 * ($marker-margin + $marker-width));
+    top: 50%;
+    transform: translateY(-50%);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media (max-width: 36rem /* 576px */) {
+  .wrapper {
+    flex-direction: column;
+
+    &.link {
+      row-gap: 0.75rem; // 12px
+    }
+  
+    &.opened {
+      row-gap: 1rem; // 16px
+    }
+  }
+
+  .schedule::before {
+    display: none;
   }
 }

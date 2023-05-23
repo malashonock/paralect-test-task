@@ -10,13 +10,14 @@ import styles from './JobLocation.module.scss';
 interface JobLocationProps {
   job: Job;
   variant: JobCardVariant;
+  className?: string;
 }
 
-export const JobLocation: FunctionComponent<JobLocationProps> = ({ job, variant }) => {
+export const JobLocation: FunctionComponent<JobLocationProps> = ({ job, variant, className }) => {
   const { town } = job;
 
   return (
-    <div className={cn(styles.wrapper, styles[variant])}>
+    <div className={cn(className, styles.wrapper, styles[variant])}>
       <LocationIcon />
       <span className={styles.text}>{town.title}</span>
     </div>

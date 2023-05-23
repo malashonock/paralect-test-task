@@ -10,9 +10,10 @@ import styles from './JobConditions.module.scss';
 interface JobConditionsProps {
   job: Job;
   variant: JobCardVariant;
+  className?: string;
 }
 
-export const JobConditions: FunctionComponent<JobConditionsProps> = ({ job, variant }) => {
+export const JobConditions: FunctionComponent<JobConditionsProps> = ({ job, variant, className }) => {
   const { payment_from, payment_to, currency, type_of_work } = job;
 
   const salary: string = 'з/п ' + (() => {
@@ -31,7 +32,7 @@ export const JobConditions: FunctionComponent<JobConditionsProps> = ({ job, vari
   })();
 
   return (
-    <div className={cn(styles.wrapper, styles[variant])}>
+    <div className={cn(className, styles.wrapper, styles[variant])}>
       <span className={styles.salary}>{salary}</span>
       <span className={styles.schedule}>{toSentenceCase(type_of_work.title)}</span>
     </div>
