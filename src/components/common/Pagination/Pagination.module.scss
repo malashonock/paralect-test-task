@@ -1,0 +1,23 @@
+@import 'styles/_colors.scss';
+@import 'styles/_typography.scss';
+
+.wrapper {
+  margin: 0 auto;
+  margin-top: 1.5rem; // +40-16=24px
+  justify-content: center;
+}
+
+.button {
+  @extend .text-base-m-regular;
+  font-family: var(--font-family-roboto); // defined in styles/fonts.ts
+  border-color: $grey-300;
+
+  &[data-active] {
+    background-color: $blue-main-500;
+
+    &:not([data-disabled]):hover,
+    &:not([data-disabled]):active {
+      background-color: rgba($blue-main-500, 0.9);
+    }
+  }
+}
